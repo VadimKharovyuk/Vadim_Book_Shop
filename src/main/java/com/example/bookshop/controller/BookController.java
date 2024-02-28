@@ -1,19 +1,21 @@
 package com.example.bookshop.controller;
 
 import com.example.bookshop.model.Book;
+import com.example.bookshop.model.MyBookList;
 import com.example.bookshop.repository.BookRepository;
+import com.example.bookshop.repository.MyBookListRepository;
 import com.example.bookshop.service.BookService;
+import com.example.bookshop.service.MyBookListService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @AllArgsConstructor
 public class BookController {
     private final BookService bookService ;
+    private final MyBookListService myBookListService ;
     @GetMapping("/")
     public String home (){
         return "home";
@@ -36,7 +38,18 @@ public class BookController {
         return "bookList";
     }
     @GetMapping("/myBooks")
-    public String getMyBook(){
+    public String getMyBook(Model model){
+        model.addAttribute("myBooks",myBookListService.findAllMyBookList(new MyBookList()));
         return "myBooks";
     }
+
+   @RequestMapping("/mylist/{id}")
+    public String getmyList(@PathVariable (name = "id") Long id ){
+        Book book =bookService.getBookById(id);
+       MyBookList myBookList = new MyBookList(book.getId(),book.getName(),book.getAuthor(),book.getPrice());
+     myBookListService.saveMyBook(myBookList);
+
+       return "redirect:/myBooks";
+   }
+
 }
