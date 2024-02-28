@@ -26,19 +26,36 @@
                 </li>
             </ul>
             <div>
-                <a class="nav-link text-white"  href="book_register" > New Book Register</a>
+                <a class="nav-link disabled text-white"  href="book_register" > New Book Register</a>
             </div>
 
         </div>
     </div>
 </nav>
-<div class="container text-center  my-5">
-    <h1> Welcome To new Book Store</h1>
-    <h6> тут что то напишу пожзже </h6>
-    <img src="/pic/book.jpg" alt="Бибоиотека" height="700" />
 
+<div class="container  my-5">
+    <table class="table table-bordered border-primary">
+        <thead>
+        <tr th:each:>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Author</th>
+            <th scope="col">Price</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+
+
+        </tbody>
+    </table>
 </div>
-
 
 
 
