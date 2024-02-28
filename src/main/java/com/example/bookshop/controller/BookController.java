@@ -19,6 +19,8 @@ public class BookController {
     @GetMapping("/book_register")
     public String book_register(){
         return "bookRegister";
+
+
     }
     @PostMapping("/save")
     public String saveBook(Book book){
