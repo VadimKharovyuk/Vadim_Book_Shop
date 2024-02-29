@@ -28,6 +28,7 @@ public class BookController {
     }
     @PostMapping("/save")
     public String saveBook(@ModelAttribute  Book book){
+
       bookService.save(book);
         return "redirect:/book_register";
     }
@@ -50,6 +51,17 @@ public class BookController {
      myBookListService.saveMyBook(myBookList);
 
        return "redirect:/myBooks";
+   }
+   @RequestMapping("/bookEdit/{id}")
+    public String editBook(@PathVariable (name = "id") Long id ,Model model){
+       Book book = bookService.getBookById(id);
+       model.addAttribute("book",book);
+        return "bookEdit";
+   }
+   @RequestMapping("/deleteBook/{id}")
+    public String deleteBook( @PathVariable ("id") Long id){
+        bookService.deleteByID(id);
+        return "redirect:/available_book";
    }
 
 }
