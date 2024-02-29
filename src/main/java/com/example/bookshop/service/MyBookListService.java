@@ -24,6 +24,9 @@ public class MyBookListService {
         return  myBookListRepository.findAll();
 
     }
+    public void deleteById(Long id){
+        myBookListRepository.deleteById(id);
+    }
 
 
 
